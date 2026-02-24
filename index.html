@@ -3,205 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Profile</title>
+    <title>Profile | Arn Tagudin</title>
     <style>
         :root {
-            --primary: #4a90e2;
-            --bg: #f4f7f6;
-            --text: #333;
-            --card: #ffffff;
+            --bg-body: #1a1a1a;          /* Charcoal Gray (Hindi pure black) */
+            --card-main: #242424;        /* Mas light na gray para sa container */
+            --item-bg: #2d2d2d;          /* Eto yung boxes sa loob */
+            --border-color: #404040;     /* Mas halatang border */
+            --text-primary: #ffffff;     /* Solid White */
+            --text-secondary: #a0a0a0;   /* Light Gray para sa labels */
         }
 
-        /* NEW ANIMATIONS */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
             display: flex;
             justify-content: center;
             padding: 40px 20px;
             margin: 0;
+            min-height: 100vh;
         }
 
         .container {
             max-width: 800px;
             width: 100%;
-            background: var(--card);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            /* Apply main entry animation */
-            animation: fadeInUp 0.8s ease-out;
+            background-color: var(--card-main);
+            padding: 40px;
+            border-radius: 12px;
+            border: 2px solid var(--border-color); /* Mas makapal na border */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: fadeIn 0.6s ease-out;
         }
 
-        h1 {
-            text-align: center;
-            color: var(--primary);
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 10px;
+        /* HEADER */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid var(--border-color);
         }
 
+        .profile-pic {
+            width: 130px;
+            height: 130px;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            object-fit: cover;
+            background-color: #121212;
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .header-text p {
+            margin: 5px 0 0 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        /* GRID & ITEMS */
         .section {
-            margin-bottom: 25px;
-            /* Makes each section fade in slightly after the other */
-            animation: slideInLeft 0.6s ease-out both;
+            margin-bottom: 30px;
         }
-
-        /* Staggered delays so sections pop in one by one */
-        .section:nth-child(2) { animation-delay: 0.2s; }
-        .section:nth-child(3) { animation-delay: 0.4s; }
-        .section:nth-child(5) { animation-delay: 0.6s; }
-        .section:nth-child(6) { animation-delay: 0.8s; }
-        .section:nth-child(8) { animation-delay: 1.0s; }
-        .section:nth-child(9) { animation-delay: 1.2s; }
-        .section:nth-child(10) { animation-delay: 1.4s; }
 
         .grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
         }
 
         .item {
-            padding: 10px;
-            border-left: 4px solid #eee;
-            transition: all 0.3s ease; /* Hover effect animation */
+            padding: 20px;
+            background-color: var(--item-bg);
+            border: 2px solid var(--border-color); /* Mas halatang border sa boxes */
+            border-radius: 8px;
+            transition: transform 0.2s, background 0.2s;
         }
 
-        /* Subtle hover effect for the info boxes */
         .item:hover {
-            border-left-color: var(--primary);
-            background: #f0f7ff;
-            transform: scale(1.02);
+            background-color: #383838;
+            transform: translateY(-2px);
         }
 
         .label {
-            font-weight: bold;
-            font-size: 0.9rem;
-            color: #777;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
             text-transform: uppercase;
+            margin-bottom: 8px;
+            display: block;
         }
 
         .value {
-            font-size: 1.1rem;
-            margin-top: 5px;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+        }
+
+        /* MOTTO */
+        .motto-box {
+            background-color: #121212;
+            padding: 30px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            margin: 35px 0;
+            text-align: center;
         }
 
         .motto {
             font-style: italic;
-            text-align: center;
             font-size: 1.2rem;
-            color: #555;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 8px;
-            border: 1px dashed #ccc;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        hr {
+            border: 0;
+            border-top: 2px solid var(--border-color);
+            margin: 30px 0;
         }
 
         @media (max-width: 600px) {
-            .grid { grid-template-columns: 1fr; }
+            .profile-header { flex-direction: column; text-align: center; }
+            .container { padding: 25px; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>About Me</h1>
+    <header class="profile-header">
+        <img src="https://lh3.googleusercontent.com/u/0/d/1H4QoYNGEuHOb3NGV6dQj4rdonZRaxvu5" alt="Arn Tagudin" class="profile-pic">
+        <div class="header-text">
+            <h1>Arn Tagudin</h1>
+            <p>Future IT Professional</p>
+        </div>
+    </header>
 
     <div class="section grid">
         <div class="item">
-            <div class="label">Name</div>
-            <div class="value">Arn Tagudin</div>
-        </div>
-        <div class="item">
-            <div class="label">Age</div>
+            <span class="label">Age</span>
             <div class="value">18 Years Old</div>
         </div>
         <div class="item">
-            <div class="label">Birthday</div>
+            <span class="label">Birthday</span>
             <div class="value">April 15, 2007</div>
         </div>
         <div class="item">
-            <div class="label">Birth Place</div>
-            <div class="value">Pio duran, Albay</div>
+            <span class="label">Birth Place</span>
+            <div class="value">Pio Duran, Albay</div>
+        </div>
+        <div class="item">
+            <span class="label">Talent</span>
+            <div class="value">Swimming</div>
         </div>
     </div>
 
     <div class="section">
         <div class="item">
-            <div class="label">Address</div>
-            <div class="value">Gawad Kalinga Malanim Gitna Brgy Dela paz, Antipolo City</div>
+            <span class="label">Address</span>
+            <div class="value">Gawad Kalinga Malanim Gitna Brgy Dela Paz, Antipolo City</div>
         </div>
     </div>
 
-    <hr>
-
-    <div class="section">
-        <div class="label" style="text-align: center;">Motto in Life</div>
+    <div class="motto-box">
         <p class="motto">"Haters gonna hate, but winners gonna win."</p>
     </div>
 
     <div class="section grid">
         <div class="item">
-            <div class="label">Hobby</div>
+            <span class="label">Hobby</span>
             <div class="value">Games</div>
         </div>
         <div class="item">
-            <div class="label">Talent</div>
-            <div class="value">Swimming</div>
+            <span class="label">Crush</span>
+            <div class="value">GF ko</div>
         </div>
     </div>
 
     <hr>
 
-    <div class="section">
+    <div class="section grid">
         <div class="item">
-            <div class="label">Dream Course</div>
-            <div class="value">BS Computer Science</div>
+            <span class="label">Dream Course</span>
+            <div class="value">BSIT</div>
         </div>
         <div class="item">
-            <div class="label">Why this course?</div>
+            <span class="label">Why this course?</span>
             <div class="value">High Salary</div>
         </div>
     </div>
 
     <div class="section grid">
         <div class="item">
-            <div class="label">Parents</div>
+            <span class="label">Parents</span>
             <div class="value">Mrs. Tagudin</div>
         </div>
         <div class="item">
-            <div class="label">Parents' Work</div>
+            <span class="label">Parents' Work</span>
             <div class="value">Handicraft & Shoe Maker</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="item" style="border-left-color: #ffb6c1;">
-            <div class="label">Crush</div>
-            <div class="value">GF ko</div>
         </div>
     </div>
 </div>
